@@ -1,0 +1,430 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --bg-color: #0e4d7a;
+  --main-color: #12ace9;
+  --text-color: #333;
+  --second-text-color: #555;
+  --white-color: #fff;
+  --cover-color: linear-gradient(45deg, #00abf0, #006e9a);
+  --pages-color: #ffffff;
+  --border: .125rem solid #080808;
+  --box-shadow: 0 0 .6rem rgba(15, 223, 223, 0.2);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+  overflow: hidden;
+}
+
+.wrapper {
+  position: relative;
+  width: 66rem;
+  height: 45rem;
+  padding: 2rem;
+  perspective: 250rem;
+  animation: show-animate 2s forwards;
+}
+
+@keyframes show-animate {
+  0%, 30% {
+    opacity: 0;
+    transform: rotate(-30deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--cover-color);
+  box-shadow: var(--box-shadow);
+  border-top-left-radius: .6rem;
+  border-bottom-left-radius: .6rem;
+  transform-origin: right;
+}
+
+.cover.cover-left {
+  z-index: -1;
+}
+
+.cover.cover-right {
+  z-index: 100;
+  transition: transform 2s cubic-bezier(.645, .045, .355, 1);
+}
+
+.cover.cover-right.turn {
+  transform: rotateY(180deg);
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  perspective: 550rem;
+}
+
+.book .book-page {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  padding: 2rem;
+  background-color: var(--pages-color);
+  box-shadow: 0 0 .6rem rgba(0,0,0,.1);
+}
+
+.book-page.page-front {
+  left: 0;
+  transform: rotateY(0deg) translateZ(1px);
+}
+
+.book-page.page-back {
+  right: 0;
+  transform: rotateY(180deg) translateZ(1px);
+}
+
+.book-page.page-right {
+  position: absolute;
+  right: 0;
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: transform 1s cubic-bezier(.345, .045, .355, 1);
+}
+
+.book-page.page-right.turn {
+  transform: rotateY(-180deg);
+}
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-page img {
+  max-width: 180px;
+  border-radius: 50%;
+  border: .25rem solid var(--main-color);
+  margin-bottom: .8rem;
+}
+
+.profile-page h1 {
+  font-size: 1.1rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.profile-page h3 {
+  font-size: 1rem;
+  color: var(--main-color);
+}
+
+.profile-page p {
+  text-align: justify;
+}
+
+.profile-page .btn-box {
+  margin-top: 1.2rem;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 9.5rem;
+  height: 3rem;
+  background: var(--main-color);
+  border: var(--border);
+  border-radius: .3rem;
+  font-size: 1rem;
+  color: var(--white-color);
+  font-weight: 500;
+  margin: 0 1rem;
+  transition: .5s;
+}
+
+.btn:hover {
+  background: transparent;
+  color: var(--main-color);
+}
+
+.btn-box .btn:nth-child(2) {
+  background: transparent;
+  color: var(--main-color);
+}
+
+.btn-box .btn:nth-child(2):hover {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+.title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--main-color);
+}
+
+.workeduc-box {
+  border-left: var(--border);
+}
+
+.workeduc-content {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.workeduc-content::before {
+  content: '';
+  position: absolute;
+  left: -0.55rem;
+  width: 1rem;
+  height: 1rem;
+  background: var(--main-color);
+  border-radius: 50%;
+}
+
+.number-page {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nextprev-btn {
+  position: absolute;
+  bottom: .9rem;
+  right: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  font-size: 2rem;
+  color: var(--second-text-color);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s;
+}
+
+.nextprev-btn.back {
+  left: 1.5rem;
+}
+
+.nextprev-btn:hover .btn1 {
+  color: var(--main-color);
+}
+
+.portafolio-box .img-box {
+  display: flex;
+  width: 75%;
+  height: 34rem;
+  border: var(--border);
+  border-radius: .5rem;
+  margin: 0 3rem;
+}
+
+.portafolio-box .img-box img {
+  width: 100%;
+  transition: .3s ease;
+}
+
+.portafolio-box .img-box:hover img {
+  transform: scale(1.1);
+}
+
+/* Formulario */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 30rem;
+  margin: 2rem auto;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  position: relative;
+}
+
+.formulario input,
+.formulario textarea {
+  padding: 0.8rem 1rem;
+  border: var(--border);
+  border-radius: .3rem;
+  font-size: 1rem;
+  background: #f9f9f9;
+  resize: none;
+}
+
+.formulario button {
+  align-self: center;
+  cursor: pointer;
+  background: var(--main-color);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: .5rem;
+  border: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.formulario button:hover {
+  background: #0b9ed9;
+}
+
+/* ADAPTABILIDAD A DISPOSITIVOS */
+@media (max-width: 1024px) {
+  .wrapper {
+    width: 95%;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .book {
+    flex-direction: column;
+  }
+
+  .book .book-page {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .cover {
+    display: none;
+  }
+
+  .formulario {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  .portafolio-box .img-box {
+    width: 100%;
+    height: auto;
+    margin: 1rem 0;
+  }
+
+  .btn {
+    width: 100%;
+    margin: 5rem 0;
+  }
+}
+.mini-imagen {
+  width: 100px;
+  height: auto; /* O ponle height: 40px; si quieres cuadrada */
+  border-radius: 10px;
+}
+.imagen-centro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.mini-imagen {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+}
+
+
+/* Contenedor general que se ajusta al ancho del dispositivo */
+.container {
+  max-width: 1200px; /* ancho máximo para pantallas grandes */
+  width: 90%; /* ancho flexible para pantallas pequeñas */
+  margin: 0 auto; /* centra el contenido */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Texto justificado y legible */
+p {
+  text-align: justify;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Imágenes responsivas: se ajustan al tamaño del contenedor */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Menú lateral: ejemplo para escritorio */
+.sidebar {
+  width: 250px;
+  float: left;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Contenido principal */
+.main-content {
+  margin-left: 270px; /* deja espacio para el sidebar */
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Media queries para pantallas pequeñas (tablets, móviles) */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    float: none;
+    margin: 0 0 20px 0;
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+/* Para móviles muy pequeños */
+@media (max-width: 480px) {
+  p {
+    font-size: 14px;
+  }
+}
+
+
+img.pequeña {
+  display: block;       /* hace que la imagen sea un bloque */
+  margin: 0 auto;       /* centra horizontalmente */
+  width: 150px;         /* tamaño pequeño, ajusta a lo que quieras */
+  height: auto;         /* para que mantenga proporción */
+}
+
+
